@@ -1,12 +1,15 @@
 import graph_parse
 import random
+import sys
 
 '''
 graph = {'A': ["C"],
           'B': ['C','A'],
 	  'C':[]}
 '''
-graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
+
+#graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
+graph=graph_parse.read_ham_graph(sys.argv[1])
 
 def dfs(G,source=None):
     if source is None:
