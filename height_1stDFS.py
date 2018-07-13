@@ -1,8 +1,12 @@
+import graph_parse
 import random
+
+'''
 graph = {'A': ["C"],
           'B': ['C','A'],
 	  'C':[]}
-
+'''
+graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
 
 def dfs(G,source=None):
     if source is None:
@@ -45,4 +49,4 @@ def dfs(G,source=None):
 		stack=[] 
                
 
-print list(dfs(graph,"B"))
+print list(dfs(graph,"1"))
