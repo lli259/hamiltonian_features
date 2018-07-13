@@ -10,6 +10,20 @@ link(2,3).
 link(2,1).
 '''
 
+class ham_graph():
+	def __init__(self,adj):
+		if adj == None:
+			self.adj_dict={}
+		else:
+			self.adj_dict=adj
+	def adj_list(self):
+		return self.adj_dict
+	def nodes(self):
+		return self.adj_dict.keys()
+	def edges_of_node(self,i):
+		return self.adj_dict[i]
+
+	
 def read_ham_graph(infile):
 	with open(infile,"r") as fread:
 		adj_dict={}
@@ -30,7 +44,8 @@ def read_ham_graph(infile):
 					#print node2,adj_dict
 				adj_dict[node1].append(node2)
 				#print node1,node2,adj_dict
-		return adj_dict
+		adj_dict_class=ham_graph(adj_dict)
+		return adj_dict_class.adj_list()
 
 def test():				
 	print read_ham_graph("instance_test_3nodes.lp")
