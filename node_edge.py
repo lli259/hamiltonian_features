@@ -35,3 +35,12 @@ reverse_graph=reverse(graph)
 
 print get_num_of_nodes(reverse_graph),get_num_of_edges(reverse_graph),get_ratio_node_edge(reverse_graph)
 
+def get_bi_edge(G):
+	bi_graph={}
+	for node in G.keys():
+		bi_graph[node]=[]
+		for edge in G[node]:
+			if node in G[edge]:
+				bi_graph[node].append(edge)
+	return  get_num_of_edges(bi_graph)/2
+print "bi_edge:",get_bi_edge(graph)

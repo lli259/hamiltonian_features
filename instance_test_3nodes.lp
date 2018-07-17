@@ -7,3 +7,4 @@ link(1,3).
 link(3,1).
 link(3,4).
 link(2,3).
+link(2,1).
