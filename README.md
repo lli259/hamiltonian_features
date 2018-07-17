@@ -16,7 +16,10 @@ height_1stDFS.py
 4: #odd_out_degree, #even_out_degree, ratio_odd_out, ratio_even_out
 
 
-#small_degree_less_than_3,ratio
+#small_in_degree_less_than_3,ratio
+#small_out_degree_less_than_3,ratio
+#small_degree_less_than_3,ratio 
+
 #AVERG_NON_LEAF_DEGREE_IN_SPANNING_TREE
 #BREADTH_D_T
 
@@ -27,6 +30,8 @@ height_1stDFS.py
 #avg_depth_connect_to_root
 #avg_depth_meet_one_branch
 #avg_branches_of_first_10_depth
+
+
 #avg_depth_bidirection_search
 
 23.

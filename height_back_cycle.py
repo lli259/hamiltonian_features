@@ -46,11 +46,10 @@ def dfs(G,source=None):
 				all_depth.append(depth_now+1)
 
                         stack.append((child, depth_now + 1, iter(G[child])))
-		elif child==start:
-			print "back edge to root found:",parent,child,depth_now
-			return depth_now+1
 		else:
-			pass
+			print "cycle found:parent,child,depth",parent,child,depth_now
+			return depth_now+1
+
 
 	    except StopIteration:
 

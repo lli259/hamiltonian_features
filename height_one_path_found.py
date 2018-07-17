@@ -44,13 +44,13 @@ def dfs(G,source=None):
 				#print child,"The maximum depth this DFS is: ",depth_now+1
 				leave_nodes.append(child)
 				all_depth.append(depth_now+1)
-
+			elif sum([0 if nd in visited else 1 for nd in G[child]])==1:
+				#only one left branch, return
+				print "one left branch found:parent,child,depth",parent,child,depth_now
+				return depth_now+1
+				
                         stack.append((child, depth_now + 1, iter(G[child])))
-		elif child==start:
-			print "back edge to root found:",parent,child,depth_now
-			return depth_now+1
-		else:
-			pass
+
 
 	    except StopIteration:
 
