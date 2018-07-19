@@ -2,15 +2,7 @@ import graph_parse
 import random
 import sys
 
-'''
-graph = {'A': ["C"],
-          'B': ['C','A'],
-	  'C':[]}
-'''
 
-#graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
-graph=graph_parse.read_ham_graph(sys.argv[1])
-#print graph
 def dfs(G,source=None):
     if source is None:
         # edges for all components
@@ -55,5 +47,14 @@ def dfs(G,source=None):
     return float(sum(all_depth))/len(all_depth)
                
 def __main_():
+	'''
+	graph = {'A': ["C"],
+		  'B': ['C','A'],
+		  'C':[]}
+	'''
+
+	#graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
+	graph=graph_parse.read_ham_graph(sys.argv[1])
+	#print graph
 	avedepth=dfs(graph,"1")
-	print maxdepth,avedepth
+	#print maxdepth,avedepth

@@ -1,9 +1,16 @@
 import sys
 import random
 import graph_parse
-import node_edge
-import height_1stDFS
-import height_avgDFS
+import node_edge #node,edge,bi_edge,out_degree,in_degree,even_out,even_in,odd_out,odd_in,ratio.
+import depth_1st_backjump_DFS #the depth of 1st backjump, and all the breadths over the path.
+import depth_avgDFS # average depth of full DFS 
+import depth_back_edge #the depth when DFS finds a back edge to root.
+import depth_back_cycle #the depth when DFS finds a any back edge.
+import depth_one_path_found #the depth when DFS finds a node with only one propagation direction.
+
+import bfs # min, max, average depth of breadth first search
+import beam # set limititation in BFS: 2 items in each layer, min, max, average depth of BFS
+
 
 def write_to_file(*m):
 	'''
@@ -18,16 +25,16 @@ def write_to_file(*m):
 		with open("feature.csv","a") as f:
 			for i in m[2:]:
 				f.write(",")
-				f.write(str(i))
+				f.write(str(round(i,4)))
 			if m[1]==1:
 				f.write("\n")
 	else:
 		#new line
 		with open("feature.csv","a") as f:
 			for i in m[2:-1]:
-				f.write(str(i))
+				f.write(str(round(i,4)))
 				f.write(",")
-			f.write(str(m[-1]))
+			f.write(str(round(m[-1],4)))
 			if m[1]==1:
 				f.write("\n")
 
@@ -108,18 +115,37 @@ ratio_degree_less_than_3=degree_less_than_3/float(len(graph.keys()))
 write_to_file(1,0,degree_less_than_3,ratio_degree_less_than_3)
 
 
-#height_1st_DFS_backjump,height_avg_DFS_backjump
+#dfs_1st_back_depth,sum_of_choices_along_path,depth_avg_DFS_backjump
 start_node="1"
-height_1st_DFS_backjump=height_1stDFS.dfs(graph,start_node)
-write_to_file(1,0,height_1st_DFS_backjump)
+dfs_1st_back_depth,sum_of_choices_along_path=depth_1st_backjump_DFS.dfs(graph,start_node)
+write_to_file(1,0,dfs_1st_back_depth,sum_of_choices_along_path)
 
-height_avg_DFS_backjump=height_1stDFS.dfs(graph,start_node)
-write_to_file(1,0,height_avg_DFS_backjump)
-
-
+depth_avg_DFS_backjump=depth_avgDFS.dfs(graph,start_node)
+write_to_file(1,0,depth_avg_DFS_backjump)
 
 
+#depth_back_to_root,depth_back_to_any,depth_one_path
+depth_back_to_root=depth_back_edge.dfs(graph,start_node)
+write_to_file(1,0,depth_back_to_root)
 
+depth_back_to_any=depth_back_cycle.dfs(graph,start_node)
+write_to_file(1,0,depth_back_to_any)
+
+depth_one_path=depth_one_path_found.dfs(graph,start_node)
+write_to_file(1,0,depth_one_path)
+
+
+#bfs
+#min_depth_bfs,max_depth_bfs,avg_depth_bfs
+min_depth_bfs,max_depth_bfs,avg_depth_bfs=bfs.bfs_edges(graph,start_node)
+write_to_file(1,0,min_depth_bfs,max_depth_bfs,avg_depth_bfs)
+
+#beam
+#min_depth_beam,max_depth_beam,avg_depth_beam
+min_depth_beam,max_depth_beam,avg_depth_beam=beam.bfs_edges(graph,start_node)
+write_to_file(1,1,min_depth_bfs,max_depth_bfs,avg_depth_bfs)
+
+print "features generated for 1 instance"
 
 
 

@@ -3,10 +3,9 @@ from collections import deque
 import graph_parse
 import sys
 
-#G={1:[2,4],2:[1,3],3:[1,2],4:[1]}
-graph=graph_parse.read_ham_graph(sys.argv[1])
 
-def bfs_edges(G, source, reverse=False):
+
+def bfs_edges(G, source):
     """Produce edges in a breadth-first-search starting at source.
 
     Parameters
@@ -16,9 +15,6 @@ def bfs_edges(G, source, reverse=False):
     source : node
        Specify starting node for breadth-first search and return edges in
        the component reachable from source.
-
-    reverse : bool, optional
-       If True traverse a directed graph in the reverse direction
 
     Returns
     -------
@@ -37,10 +33,7 @@ def bfs_edges(G, source, reverse=False):
     Based on http://www.ics.uci.edu/~eppstein/PADS/BFS.py
     by D. Eppstein, July 2004.
     """
-    if reverse:
-        neighbors = iter(G[source])
-    else:
-        neighbors = iter(G[source])
+    neighbors = iter(G[source])
     
     leave_nodes=[]
     all_depth=[]
@@ -85,7 +78,13 @@ def bfs_edges(G, source, reverse=False):
 	    
         except StopIteration:
             queue.popleft()
-    return bfs_edges,max(all_depth),float(sum(all_depth))/len(all_depth)
-#print graph
-bfs_edges,max_depth,avg_depth=bfs_edges(graph, "1", reverse=False)
-print max_depth,avg_depth
+    #print bfs_edges
+    return min(all_depth),max(all_depth),float(sum(all_depth))/len(all_depth)
+
+
+def __main__():
+	#G={1:[2,4],2:[1,3],3:[1,2],4:[1]}
+	graph=graph_parse.read_ham_graph(sys.argv[1])
+	#print graph
+	min_depth,max_depth,avg_depth=bfs_edges(graph, "1")
+	print max_depth,avg_depth

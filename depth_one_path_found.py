@@ -2,15 +2,7 @@ import graph_parse
 import random
 import sys
 
-'''
-graph = {'A': ["C"],
-          'B': ['C','A'],
-	  'C':[]}
-'''
 
-#graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
-graph=graph_parse.read_ham_graph(sys.argv[1])
-#print graph
 def dfs(G,source=None):
     if source is None:
         # edges for all components
@@ -46,7 +38,7 @@ def dfs(G,source=None):
 				all_depth.append(depth_now+1)
 			elif sum([0 if nd in visited else 1 for nd in G[child]])==1:
 				#only one left branch, return
-				print "one left branch found:parent,child,depth",parent,child,depth_now
+				#print "one left branch found:parent,child,depth",parent,child,depth_now
 				return depth_now+1
 				
                         stack.append((child, depth_now + 1, iter(G[child])))
@@ -56,10 +48,21 @@ def dfs(G,source=None):
 
 		#0. If we want to continue the search 
 		stack.pop()
-	print "no back edge"
+	#print "no back edge"
 	return max(all_depth)
     #return allpath,max(all_depth),float(sum(all_depth))/len(all_depth)
-               
+         
+def __main__():
+	'''
+	graph = {'A': ["C"],
+		  'B': ['C','A'],
+		  'C':[]}
+	'''
 
-back_depth=dfs(graph,"1")
-print back_depth
+	#graph=graph_parse.read_ham_graph("instance_test_3nodes.lp")
+	graph=graph_parse.read_ham_graph(sys.argv[1])
+	#print graph
+	      
+	print "result: one_path:"
+	back_depth=dfs(graph,"1")
+	#print back_depth
