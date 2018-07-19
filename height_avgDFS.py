@@ -51,8 +51,9 @@ def dfs(G,source=None):
 
 		#0. If we want to continue the search 
 		stack.pop()
-    return allpath,max(all_depth),float(sum(all_depth))/len(all_depth)
+    #print allpath,max(all_depth)
+    return float(sum(all_depth))/len(all_depth)
                
-
-allpaths,maxdepth,avedepth=dfs(graph,"1")
-print maxdepth,avedepth
+def __main_():
+	avedepth=dfs(graph,"1")
+	print maxdepth,avedepth

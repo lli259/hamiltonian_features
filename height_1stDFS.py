@@ -18,7 +18,8 @@ def dfs(G,source=None):
     else:
         # edges for components with source
         nodes = [source]
-
+    dfs_path=[]
+    dfs_1st_back_depth=0
     visited = set()
     for start in nodes:
         if start in visited:
@@ -35,7 +36,7 @@ def dfs(G,source=None):
 		child=random.choice(childrens_list)
 
                 if child not in visited:
-			yield parent, child
+			dfs_path.append((parent, child))
                   	visited.add(child)
                         stack.append((child, depth_now + 1, iter(G[child])))
 
@@ -45,11 +46,14 @@ def dfs(G,source=None):
 	    #1.random choice error
 	    except IndexError:
 		parent, depth_now, children = stack[-1]
-		print "The maximum depth this DFS is: ",depth_now
+		#print "The maximum depth this DFS is: ",depth_now
+		dfs_1st_back_depth=depth_now
 		#0. If we want to continue the search 
 		#stack.pop()
 		#1. If we want to terminate search after the first run:
-		stack=[] 
+		stack=[]
+    return dfs_1st_back_depth
                
 
-print list(dfs(graph,"1"))
+def __main__():
+	print dfs(graph,"1")
