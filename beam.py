@@ -90,7 +90,7 @@ def bfs_edges(G, source):
 	        item_visited_each_layer+=1
 	    	if item_visited_each_layer==2:
 			queue.popleft()
-			continue
+			#continue
 
 	   	#print "new:",parent,height,old_height,item_visited_each_layer
 	    
