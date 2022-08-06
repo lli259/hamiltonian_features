@@ -124,6 +124,7 @@ write_to_file(1,0,degree_less_than_3,ratio_degree_less_than_3)
 
 #dfs_1st_back_depth,sum_of_choices_along_path,depth_avg_DFS_backjump
 start_node="1"
+#start_node=sorted(G.keys())[0]
 dfs_1st_back_depth,sum_of_choices_along_path=depth_1st_backjump_DFS.dfs(graph,start_node)
 write_to_file(1,0,dfs_1st_back_depth,sum_of_choices_along_path)
 
