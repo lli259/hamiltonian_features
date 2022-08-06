@@ -44,20 +44,13 @@ reverse_graph=node_edge.reverse(graph)
 
 #num_of_nodes,num_of_edges,ratio_node_edge,bi_edge,ratio_bi_edge,min_out_degree,max_out_degree,avg_out_degree,min_in_degree,max_in_degree,avg_in_degree,num_of_odd_out_degree,ratio_of_odd_out_degree,num_of_even_out_degree,ratio_of_even_out_degree,num_of_odd_in_degree,ratio_of_odd_in_degree,num_of_even_in_degree,ratio_of_even_in_degree,num_of_odd_degree,ratio_of_odd_degree,num_of_even_degree,ratio_of_even_degree,out_degree_less_than_3,ratio_out_degree_less_than_3,in_degree_less_than_3,ratio_in_degree_less_than_3,degree_less_than_3,ratio_degree_less_than_3
 
-with open("feature.csv","a") as f:
-	a=sys.argv[1]
-	if "/" in a:
-		f.write(a.split("/")[-1])
-	else:
-		f.write(a)
-
 #features:
 #num_of_nodes,num_of_edges,ratio_node_edge
 num_of_nodes=node_edge.get_num_of_nodes(graph)
 num_of_edges=node_edge.get_num_of_edges(graph)
 ratio_node_edge=node_edge.get_ratio_node_edge(graph)
 
-write_to_file(1,0,num_of_nodes,num_of_edges,ratio_node_edge)
+write_to_file(0,0,num_of_nodes,num_of_edges,ratio_node_edge)
 
 #bi_edge,ratio_bi_edge
 bi_edge=node_edge.get_num_of_edges(node_edge.get_bi_edge(graph))
@@ -123,7 +116,7 @@ write_to_file(1,0,degree_less_than_3,ratio_degree_less_than_3)
 
 
 #dfs_1st_back_depth,sum_of_choices_along_path,depth_avg_DFS_backjump
-start_node="1"
+start_node=sorted(G.keys())[0]
 dfs_1st_back_depth,sum_of_choices_along_path=depth_1st_backjump_DFS.dfs(graph,start_node)
 write_to_file(1,0,dfs_1st_back_depth,sum_of_choices_along_path)
 
@@ -152,7 +145,7 @@ write_to_file(1,0,min_depth_bfs,max_depth_bfs,avg_depth_bfs)
 min_depth_beam,max_depth_beam,avg_depth_beam=beam.bfs_edges(graph,start_node)
 write_to_file(1,1,min_depth_beam,max_depth_beam,avg_depth_beam)
 
-#print "features generated for 1 instance"
+print "features generated for 1 instance"
 
 
 
